@@ -31,6 +31,11 @@ glob('./src/components/*', null, (err, items) => {
 app.use('/v1', openRouter);
 app.use('/api/v1', apiRouter);
 
+// swagger 
+var swaggerUi = require('swagger-ui-express'),
+  swaggerDocument = require('./src/utils/swagger.json');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 // handle 404
 app.use(function (req, res, next) {
   res.status(404);

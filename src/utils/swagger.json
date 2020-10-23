@@ -1,0 +1,128 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Schoology - API Collection ",
+    "description": "Schoology Career - BE Task API Collection",
+    "contact": {
+      "name": "Prasun Jaiswal",
+      "email": "prasunjais@gmail.com"
+    }
+  },
+  "host": "localhost:3030",
+  "basePath": "/api/v1",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/jobs": {
+      "get": {
+        "summary": "Jobs | Get List",
+        "tags": [
+          "Jobs"
+        ],
+        "operationId": "Jobs|GetList",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "default": 1,
+            "min": 1,
+            "max": 100,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Jobs List Fetched Successfully",
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid Request Body!"
+          },
+          "401": {
+            "description": "Unauthorized Access!"
+          },
+          "404": {
+            "description": "Page Not Found!"
+          },
+          "409": {
+            "description": "Conflict Server Error."
+          },
+          "500": {
+            "description": "Internal Server Error!"
+          }
+        }
+      }
+    },
+    "/jobs/{jobId}": {
+      "get": {
+        "description": "Get Job Details ",
+        "summary": "Jobs | Get Details",
+        "tags": [
+          "Jobs"
+        ],
+        "operationId": "Jobs|GetDetails",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "default": "03fe38b2-fd4a-4de8-bca7-3a5225613043",
+            "required": true,
+            "type": "string",
+            "description": "Job Id as taken from job list api"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Jobs Details Fetched Successfully",
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid Request Body!"
+          },
+          "401": {
+            "description": "Unauthorized Access!"
+          },
+          "404": {
+            "description": "Page Not Found!"
+          },
+          "409": {
+            "description": "Conflict Server Error."
+          },
+          "500": {
+            "description": "Internal Server Error!"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Jobs",
+      "description": "Jobs Listing APIs as required for FE"
+    }
+  ]
+}
