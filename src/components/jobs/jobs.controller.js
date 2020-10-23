@@ -88,11 +88,16 @@ class listController extends BaseController {
 
       // filtering the data 
       if (jobId && jobId != '') {
-        let re = new RegExp(jobId, 'i') // creating a new regex expression
         job = jobs.filter((data) => {
-          if (data.id.match(re)) return data;
+          if (data.id == jobId) return data;
         })
       } else {
+        error('Job Id not found !');
+        return this.errors(req, res, this.status.HTTP_BAD_REQUEST, this.messageTypes.jobIdIsInvalid(jobId));
+      }
+
+      // if the jobs details are not fetched 
+      if (!job.length) {
         error('Job Id not found !');
         return this.errors(req, res, this.status.HTTP_BAD_REQUEST, this.messageTypes.jobIdIsInvalid(jobId));
       }
